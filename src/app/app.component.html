@@ -1,4 +1,31 @@
 <h2>Two way binding</h2>
-<input type="text">
+<input type="text" [(ngModel)]="myInput">
+<!-- per far funzionare bisogna importare import { FormsModule } from '@angular/forms'; in app.module -->
+
+<h3>My input: {{myInput}}</h3>
+
+<h2>Template Driven Form</h2>
+<!-- per far funzionare devo impoartere FormModule in app.module-->
+<!-- validazioni html in angular no funzionano -->
+
+<!-- (ngSubmit) evento che va a richiamare un'azzione in app.component.ts -->
+<form (ngSubmit)="onSubmit(formRef)" #formRef="ngForm">
+  <input type="text" name="firstInputName" ngModel>
+
+  <!-- con attributo 'ngModel' dico che ci sono elementi di form da gestire -->
+
+  <input type="text" name="lastInputName" ngModel>
+
+  <button type="submit">Conferma</button>
+
+</form>
+
+<h2>Template Driven Form 2</h2>
+<form  (ngSubmit)="onSubmit2()">
+  <input type="text" [(ngModel)]="formObjDue.name" name="name">
+  <input type="text" [(ngModel)]="formObjDue.surname" name="surname">
+  <button type="button" (click)="onSubmit2()">vai</button>
+  <!-- cosi stampa solo valori specifici , invece con  (ngSubmit)="onSubmit(formRef)" #formRef="ngForm" vedi tutto info-->
+</form>
 
 <router-outlet></router-outlet>
