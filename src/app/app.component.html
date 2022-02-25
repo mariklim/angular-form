@@ -20,6 +20,8 @@
 
 </form>
 
+<p>Test:  {{test}}</p>
+
 <h2>Template Driven Form 2</h2>
 <form  (ngSubmit)="onSubmit2()">
   <input type="text" [(ngModel)]="formObjDue.name" name="name">
@@ -27,5 +29,70 @@
   <button type="button" (click)="onSubmit2()">vai</button>
   <!-- cosi stampa solo valori specifici , invece con  (ngSubmit)="onSubmit(formRef)" #formRef="ngForm" vedi tutto info-->
 </form>
+
+
+
+<h2>Reactive forms</h2>
+<!-- importare in app module import { ReactiveFormsModule } from '@angular/forms';
+      all app.component importare form control import { FormControl } from '@angular/forms'
+      inizializzare control in app.component : nameReactive = new FormControl('FormControl test');
+      nel tamplate inserire property binding al [formControl] e associare il nome della variablie che abbiamo dato in app.controller "nameReactive"s
+ -->
+<p>Value: {{ nameReactive.value }}</p>
+
+<label for="name">Name: </label>
+<input id="name" type="text" [formControl]="nameReactive">
+<button (click)="onSubmitReactive()">vai form reactive</button>
+
+<!-- Reactive form group -->
+<h2>Reactive forms group</h2>
+
+<form [formGroup]="profileForm" >
+
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="text" formControlName="firstName">
+
+  <label for="last-name">Last Name: </label>
+  <input id="last-name" type="text" formControlName="lastName">
+  <button type="submit" (click)="onSubmitGroup()">Submit</button>
+
+</form>
+
+<hr>
+
+<!-- <h2>New form</h2>
+
+<form  (ngSubmit)="onSubmitNew(referenzaNewForm)" #referenzaNewForm = "ngForm">
+  <label for="nome">Nome</label>
+  <input type="text" id="nome" nome="nomeControl" ngModel>
+
+  <label for="cognome">Cognome</label>
+  <input type="text" id="cognome" nome="cognomeControl" ngModel>
+
+  <button type="submit">vai</button>
+</form> -->
+<!-- 
+1. Usando Reactive Forms, creare una form con nome, cognome, email
+2. Disabilitare il tasto Submit se i tre input sono pristine
+3. Mostrare un messaggio d'errore all'utente se uno degli inout e' pristine -->
+
+<hr>
+<hr>
+
+<!-- https://unsplash.com/documentation#search-photos -->
+
+<h2>Select + API</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmitFoto()">
+  <label for="color">Colore:</label>
+            <select formControlName="color">
+                <option disabled>Select Color</option>
+                <option *ngFor="let color of colorsList">{{color}}</option>
+            </select>
+
+
+<button type="input">vai</button>
+</form>
+
 
 <router-outlet></router-outlet>
